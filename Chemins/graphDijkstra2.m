@@ -1,5 +1,5 @@
 function [] = graphDijkstra2(A, start, stop, centers, radii)
-    chemin = dijkstra(A, start, stop);
+    % chemin = dijkstra(A, start, stop);
     d = size(A);
     n = d(1);
     hold on;
@@ -29,30 +29,15 @@ function [] = graphDijkstra2(A, start, stop, centers, radii)
                 Ay = ay+radii(i,1)*sinTheta;
                 By = by-radii(i,1)*sinTheta;
                 text((ax + bx)/2, (ay + by)/2, int2str(A(i,j)));
-                k = 5;
-                if acos(cosTheta) == asin(sinTheta) && cosTheta ~= 0 && ~(cosTheta > 0 && sinTheta > 0)
-                    k = 7;
-                elseif acos(cosTheta) - asin(sinTheta) < 0.01 && abs(cosTheta - sinTheta) > 0.25 && cosTheta ~= 0
-                    k = 9;
-                elseif abs(acos(cosTheta) - asin(sinTheta)) < 0.01 && cosTheta ~= 0
-                    k = 10;
-                elseif asin(sinTheta) - acos(cosTheta) <= 0 && cosTheta ~= 0 && (cosTheta > 0 || cosTheta < 0 && sinTheta <= 0)
-                    k = 7;
-                elseif cosTheta == 0 && sinTheta > 0
-                    k = 1;
-                elseif cosTheta == 0
-                    k = 7;
-                elseif abs(cosTheta) == abs(sinTheta)
-                    k = 4;
-                end
+                k = 7;
                 display([acos(cosTheta)/pi*180, asin(sinTheta)/pi*180, i, j]);
                 color = "black";
-                taille = size(chemin);
-                for l=1:taille(2) - 1
-                    if chemin(l) == i && chemin(l+1) == j
-                        color = "red";
-                    end
-                end
+                %taille = size(chemin);
+                %for l=1:taille(2) - 1
+                %    if chemin(l) == i && chemin(l+1) == j
+                %        color = "red";
+                %    end
+                %end
                 plot([Bx + 0.2*cos(k * pi/6 - acos(cosTheta)) Bx], [By + 0.2*sin(k * pi/6 - acos(cosTheta)) By], "Color", color);
                 plot([Bx + 0.2*cos((k - 2) * pi/6 - acos(cosTheta)) Bx], [By + 0.2*sin((k - 2) * pi/6 - acos(cosTheta)) By], "Color", color);
                 plot([Ax Bx], [Ay By], "Color", color);
