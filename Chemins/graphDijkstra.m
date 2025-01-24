@@ -7,7 +7,7 @@ function [] = graphDijkstra(A, start, stop, centers, radii)
     p.NodeFontSize = 16;
     p.EdgeFontSize = 16;
     p.ArrowSize = 16;
-    p.MarkerSize = 20 * radii(1,1);
+    p.MarkerSize = 20 .* radii;
     highlight(p, chemin, 'NodeColor', 'r', 'EdgeColor', 'r');
     labeledge(p,1:numedges(G), G.Edges.Weight);
 end
