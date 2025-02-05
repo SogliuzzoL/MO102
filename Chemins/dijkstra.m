@@ -1,4 +1,4 @@
-function [chemin] = dijkstra(A, start, stop)
+function [P] = dijkstra(A, start, stop)
     d = size(A);
     n = d(1);
     D = Inf(1, n);
@@ -15,13 +15,5 @@ function [chemin] = dijkstra(A, start, stop)
             end
         end
     end
-    s = stop;
-    chemin = [];
-    chemin(end+1) = s;
-    while(s ~= start)
-        s = P(1, s);
-        chemin(end+1) = s;
-    end
-    chemin = flip(chemin);
 end
     
