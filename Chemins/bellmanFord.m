@@ -4,6 +4,7 @@ function [pred] = bellmanFord(A, start)
     c = Inf(dim);
     pred = zeros(dim);
     c(start, 1) = 0;
+    % Recherche du plus court chemin
     for k=2:nSommet
         for j=1:nSommet
             c(j, k) = c(j, k - 1);
@@ -18,7 +19,7 @@ function [pred] = bellmanFord(A, start)
             end
         end
     end
-
+    % Vérification d'un circuit absorbant
     for j=1:nSommet
         for i=1:nSommet
             if A(i, j) ~= 0 && c(i, nSommet) ~= inf && c(i, nSommet) + A(i, j) < c(j, nSommet)
