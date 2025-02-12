@@ -7,6 +7,7 @@ function [chemin] = predBoucleToChemin(pred, start, stop)
         m(end + 1) = s;
         s = pred(s, 1);
         chemin(end+1) = s;
+        % test
     end
     chemin = flip(chemin);
 end
