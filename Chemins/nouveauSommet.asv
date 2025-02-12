@@ -1,5 +1,5 @@
 function [s] = nouveauSommet(D, M)
-    % renvoie le sommet le plus proche qui n'est pas encore marqué
+    % renvoie le sommet le plus proche
     minValue = Inf;
     s = 0;
     d = size(D);
