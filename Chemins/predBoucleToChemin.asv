@@ -14,7 +14,7 @@ function [chemin] = predBoucleToChemin(pred, start, stop)
     end
     
     % on ne conserve que le circuit absorbant
-    while(chemin(1) ~= chemin(end)) % le dernier sommet de chemin est celui qui permet de fermer la boucle (chemin = [ 10     8     7     6     5     4     2     7] par exemple)
+    while(chemin(1) ~= chemin(end)) % le dernier sommet de chemin est celui qui pe
         chemin = chemin(2:end);
     end
 
