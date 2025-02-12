@@ -1,9 +1,10 @@
-function [pred] = bellmanFord(A, start)
+function [pred, boucle] = bellmanFord(A, start)
     dim = size(A);
     nSommet = dim(1);
     c = Inf(dim);
     pred = zeros(dim);
     c(start, 1) = 0;
+    boucle = 0;
     % Recherche du plus court chemin
     for k=2:nSommet
         for j=1:nSommet
@@ -23,8 +24,7 @@ function [pred] = bellmanFord(A, start)
     for j=1:nSommet
         for i=1:nSommet
             if A(i, j) ~= 0 && c(i, nSommet) ~= inf && c(i, nSommet) + A(i, j) < c(j, nSommet)
-                pred = start * ones(dim);
-                disp("Circuit absorbant");
+                boucle = 1;
                 return;
             end
         end
