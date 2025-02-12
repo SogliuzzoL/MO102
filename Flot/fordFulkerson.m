@@ -6,12 +6,14 @@ function [preds, flows] = fordFulkerson(C, s, t)
     preds = [];
     [sortie, parent] = cheminAugmentant(residuel, s, t);
     while sortie == 1
+        % Recherche du flow minimun
         flowMin = inf;
         i = t;
         while i ~= s
             flowMin = min(flowMin, residuel(parent(i), i));
             i = parent(i);
         end
+        % Calcul du nouveau graph résiduel
         i = t;
         while i~= s
             residuel(parent(i), i) = residuel(parent(i), i) - flowMin;
@@ -19,6 +21,7 @@ function [preds, flows] = fordFulkerson(C, s, t)
         end
         flows(end + 1) = flowMin;
         preds(:, end + 1) = parent;
+        % Recherche d'un nouveau chemin augmentant
         [sortie, parent] = cheminAugmentant(residuel, s, t);
     end
 end
