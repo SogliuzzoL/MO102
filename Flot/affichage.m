@@ -7,13 +7,30 @@ function [] = affichage(C, chemins, flows, centers, radii)
     p.EdgeFontSize = 16;
     p.ArrowSize = 16;
     p.MarkerSize = 20 .* radii;
-    labeledge(p,1:numedges(G), G.Edges.Weight);
+    F = calculFlow(chemins, flows);
+    dim = size(F);
+    for i=1:dim(1)
+        for j=1:dim(2)
+            flow = F(i, j);
+            if C(i, j)
+                if flow
+                    highlight(p, [i, j], 'NodeColor', 'r', 'EdgeColor', 'r');
+                end
+                labeledge(p, i, j, flow + " - [" + string(full(C(i, j))) + "]");             
+            end
+        end
+    end
+end
+
+function [F] = calculFlow(chemins, flows)
     dim = size(chemins);
-    n = dim(2);
-    for i=1:n
-        highlight(p, chemins(:, i), 'NodeColor', 'r', 'EdgeColor', 'r');
+    F = zeros(dim(1), dim(1));
+    for i=1:dim(2)
+        chemin = chemins(:, i);
         for j=1:dim(1) - 1
-            labeledge(p, chemins(j, i), chemins(j + 1, i), string(full(C(chemins(j, i), chemins(j + 1, i)))) + " - [" + flows(i) + "]");
+            if chemin(j)
+                F(chemin(j), chemin(j + 1)) = F(chemin(j), chemin(j + 1)) + flows(i);
+            end
         end
     end
 end

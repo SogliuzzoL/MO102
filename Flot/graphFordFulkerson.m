@@ -1,6 +1,5 @@
 function [] = graphFordFulkerson(C, s, t, centers, radii)
     [preds, flows] = fordFulkerson(C, s, t);
-    display(preds)
     chemins = [];
     dim = size(preds);
     n = dim(2);
