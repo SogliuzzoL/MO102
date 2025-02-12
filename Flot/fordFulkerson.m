@@ -1,4 +1,5 @@
 function [preds, flows] = fordFulkerson(C, s, t)
+    % Calcul d'une solution de flow maximal
     dim = size(C);
     nSommet = dim(1);
     residuel = C;

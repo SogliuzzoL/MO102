@@ -1,4 +1,5 @@
 function [] = graphFordFulkerson(C, s, t, centers, radii)
+    % Affichage de la solution calculée par Ford Fulkerson
     [preds, flows] = fordFulkerson(C, s, t);
     chemins = [];
     dim = size(preds);
