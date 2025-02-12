@@ -7,7 +7,6 @@ function [preds, flows] = fordFulkerson(C, s, t)
     [sortie, parent] = cheminAugmentant(residuel, s, t);
     while sortie == 1
         display(residuel);
-        pause(1);
         flowMin = inf;
         i = t;
         while i ~= s
@@ -17,10 +16,10 @@ function [preds, flows] = fordFulkerson(C, s, t)
         display(flowMin);
         i = t;
         while i~= s
-            residuel(i, parent(i)) = residuel(i, parent(i)) + flowMin;
             residuel(parent(i), i) = residuel(parent(i), i) - flowMin;
             i = parent(i);
         end
+        display(residuel);
         flows(end + 1) = flowMin;
         preds(:, end + 1) = parent;
         [sortie, parent] = cheminAugmentant(residuel, s, t);
