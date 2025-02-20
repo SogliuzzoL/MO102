@@ -18,6 +18,7 @@ function [preds, flows] = fordFulkerson(C, s, t)
         i = t;
         while i~= s
             residuel(parent(i), i) = residuel(parent(i), i) - flowMin;
+            residuel(i, parent(i)) = residuel(i, parent(i)) + flowMin;
             i = parent(i);
         end
         flows(end + 1) = flowMin;
